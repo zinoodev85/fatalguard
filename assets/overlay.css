@@ -1,0 +1,271 @@
+/* Admin-bar "Logs" node (styles were inline attrs before — wp.org: no inline CSS). */
+#wp-admin-bar-fatalguard .ab-icon { top: 0; padding-right: 5px; }
+#wp-admin-bar-fatalguard .ab-icon svg,
+.fatalguard-ico svg { vertical-align: middle; }
+
+/* Debug Logs overlay — namespaced under #fatalguard-overlay. */
+#fatalguard-overlay {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 42vh;
+  min-height: 240px;
+  z-index: 99998; /* just under the admin bar (99999) */
+  display: flex;
+  flex-direction: column;
+  background: #16202e;
+  color: #dce6f2;
+  border-top: 2px solid #324a66;
+  box-shadow: 0 -10px 30px rgba(0, 0, 0, 0.35);
+  font-family: "SF Mono", "JetBrains Mono", Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+#fatalguard-overlay[hidden] { display: none; }
+
+/* Lowered/minimized: collapse to just the header bar so it barely takes space. */
+#fatalguard-overlay.is-min { height: auto; min-height: 0; }
+#fatalguard-overlay.is-min #fatalguard-body { display: none; }
+/* Collapsed = just the icon + the last log line. Hide tabs, the footer (which
+   holds the filters + log-action buttons), and the title text; keep the peek,
+   raise, and close. */
+#fatalguard-overlay.is-min #fatalguard-tabs,
+#fatalguard-overlay.is-min #fatalguard-foot,
+#fatalguard-overlay.is-min .fatalguard-titletext { display: none; }
+#fatalguard-head .fatalguard-ico { opacity: .85; display: inline-flex; align-items: center; margin-right: 5px; vertical-align: middle; }
+#fatalguard-head button[data-act="min"],
+#fatalguard-head button[data-act="close"] { font-size: 13px; padding: 0 9px; }
+
+#fatalguard-head {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 14px;
+  background: #1b2738;
+  border-bottom: 1px solid #2c4059;
+  flex: 0 0 auto;
+  flex-wrap: nowrap;
+  cursor: pointer; /* empty header space toggles lower/raise */
+}
+#fatalguard-head strong { color: #e6eef8; margin-right: 6px; flex: 0 0 auto; }
+#fatalguard-head .fatalguard-spacer { flex: 1 1 auto; }
+
+/* Footer bar: filters (left) + Live / Refresh / Clear (right). Kept out of the
+   header so the tab row never wraps to two lines. */
+#fatalguard-foot {
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  row-gap: 6px;
+  padding: 9px 14px;
+  background: #1b2738;
+  border-top: 1px solid #2c4059;
+  flex: 0 0 auto;
+  flex-wrap: wrap;
+}
+#fatalguard-foot .fatalguard-foot-spacer { flex: 1 1 auto; }
+#fatalguard-foot input, #fatalguard-foot select { cursor: auto; }
+
+/* Last-log peek shown in the collapsed bar's free space (hidden when expanded). */
+#fatalguard-peek {
+  min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 11px;
+  color: #9fb2c9;
+  padding: 0 10px;
+  opacity: 0;
+}
+#fatalguard-overlay.is-min #fatalguard-peek { opacity: 1; }
+#fatalguard-peek.sev-fatal { color: #ffb0a8; }
+#fatalguard-peek.sev-error { color: #e0b07a; }
+#fatalguard-peek.sev-warning { color: #d9c27e; }
+#fatalguard-peek.sev-notice { color: #8fb0d6; }
+
+/* Tag filter UI. */
+#fatalguard-filters { flex: 0 0 auto; }
+.fatalguard-filter-label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  font-size: 11px;
+  color: #9fb2c9;
+  white-space: nowrap;
+}
+/* ID-scoped so wp-admin's native <select> styling can't force a white bg. Solid
+   bg hides the native caret, so we draw our own chevron. */
+#fatalguard-overlay .fatalguard-filter-select {
+  height: 27px;
+  box-sizing: border-box;
+  background-color: #28384e;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath fill='none' stroke='%239fb2c9' stroke-width='1.5' d='M1 1l4 4 4-4'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 9px center;
+  color: #d4e0ee;
+  border: 1px solid #3a5474;
+  border-radius: 6px;
+  padding: 0 26px 0 10px;
+  font: inherit;
+  font-size: 11px;
+  cursor: pointer;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+#fatalguard-overlay .fatalguard-filter-select:hover { background-color: #314661; border-color: #4a688f; }
+#fatalguard-overlay .fatalguard-filter-select option { background: #2a3d52; color: #dce6f2; }
+
+/* M1 controls: search, group toggle, count/origin chips, grouped rows */
+#fatalguard-filters { display: flex; align-items: center; gap: 20px; }
+/* ID-scoped so wp-admin's input[type=search] can't override the dark styling. */
+#fatalguard-overlay .fatalguard-search {
+  height: 27px; box-sizing: border-box;
+  background: #28384e; color: #d4e0ee; border: 1px solid #3a5474; border-radius: 6px;
+  padding: 0 10px; font: inherit; font-size: 11px; min-width: 180px; line-height: normal;
+}
+#fatalguard-overlay .fatalguard-search::placeholder { color: #7d93ab; }
+#fatalguard-overlay .fatalguard-search:focus {
+  outline: none; border-color: #5a7ea8; box-shadow: 0 0 0 2px rgba(90, 126, 168, 0.25);
+}
+.fatalguard-group { display: inline-flex; align-items: center; color: #9fb2c9; font-size: 11px; white-space: nowrap; cursor: pointer; user-select: none; }
+.fatalguard-group-cb { margin: 0 5px 0 0; }
+.fatalguard-count {
+  display: inline-block; background: #f5a623; color: #15181c; font-weight: 700; font-size: 11px;
+  line-height: 1.6; border-radius: 10px; padding: 0 7px; margin-right: 8px; vertical-align: middle;
+}
+.fatalguard-origin {
+  display: inline-block; background: #314661; color: #9fb4cd; font-size: 11px;
+  border-radius: 4px; padding: 0 6px; margin-right: 8px; vertical-align: middle;
+}
+.fatalguard-seen { color: #7d93ab; font-size: 11px; }
+.fatalguard-grouped-msg { vertical-align: middle; }
+#fatalguard-head button,
+#fatalguard-foot button {
+  height: 27px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  background: #28384e;
+  color: #d4e0ee;
+  border: 1px solid #3a5474;
+  border-radius: 6px;
+  padding: 0 11px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+  flex: 0 0 auto;
+}
+#fatalguard-head button:hover,
+#fatalguard-foot button:hover { background: #314661; border-color: #4a688f; }
+#fatalguard-foot button.is-on { background: #2e6b45; border-color: #3f9160; color: #eafff0; }
+#fatalguard-flash { color: #ffd98a; font-size: 11px; flex-basis: 100%; order: 99; margin: 2px 0 0; }
+
+#fatalguard-tabs { display: flex; flex-wrap: nowrap; gap: 3px; min-width: 0; overflow-x: auto; scrollbar-width: thin; }
+#fatalguard-tabs::-webkit-scrollbar { height: 4px; }
+#fatalguard-tabs::-webkit-scrollbar-thumb { background: #33485f; border-radius: 3px; }
+.fatalguard-tab { flex: 0 0 auto; }
+.fatalguard-tab {
+  height: 27px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  background: transparent !important;
+  border: 1px solid transparent !important;
+  color: #9fb2c9 !important;
+  border-radius: 6px;
+  padding: 0 11px;
+  cursor: pointer;
+  font: inherit;
+  font-size: 11px;
+}
+.fatalguard-tab:hover { color: #d4e0ee !important; background: rgba(255, 255, 255, 0.05) !important; }
+.fatalguard-tab.is-active {
+  background: #324a66 !important;
+  border-color: #4a688f !important;
+  color: #fff !important;
+}
+
+#fatalguard-body {
+  flex: 1 1 auto;
+  overflow: auto;
+  padding: 8px 14px;
+  line-height: 1.55;
+}
+.fatalguard-loading, .fatalguard-empty {
+  color: #8da3bd;
+  padding: 14px 6px;
+  font-style: italic;
+}
+/* Empty log + logging off → centered enable call-to-action. */
+.fatalguard-empty.fatalguard-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  min-height: 160px;
+  font-style: normal;
+}
+.fatalguard-cta .fatalguard-logcb {
+  font-size: 13px;
+  padding: 8px 14px;
+  background: #223349;
+  border: 1px solid #35507a;
+  border-radius: 6px;
+}
+.fatalguard-cta-msg { font-style: italic; }
+.fatalguard-lines { display: flex; flex-direction: column; }
+.fatalguard-line {
+  white-space: pre-wrap;
+  word-break: break-word;
+  padding: 3px 8px;
+  border-left: 3px solid transparent;
+  border-radius: 0 3px 3px 0;
+}
+.fatalguard-line:hover { background: rgba(255, 255, 255, 0.04); }
+.fatalguard-line.sev-fatal { border-left-color: #e0726a; background: #3a2530; color: #ffd9d4; }
+.fatalguard-line.sev-error { border-left-color: #d8a063; background: #34302a; }
+.fatalguard-line.sev-warning { border-left-color: #cdb46f; }
+.fatalguard-line.sev-notice { border-left-color: #6f8fae; }
+
+.fatalguard-fatals { display: flex; flex-direction: column; gap: 8px; }
+.fatalguard-fatal {
+  border: 1px solid #3a5474;
+  border-left: 3px solid #e0726a;
+  border-radius: 8px;
+  padding: 8px 10px;
+  background: #1c2a3c;
+}
+.fatalguard-fatal-msg { color: #ffded8; margin-bottom: 4px; white-space: pre-wrap; word-break: break-word; }
+.fatalguard-fatal-meta { color: #94a8c0; font-size: 11px; }
+
+.fatalguard-status { display: flex; flex-direction: column; gap: 4px; max-width: 900px; }
+.fatalguard-status-row { display: flex; gap: 10px; padding: 3px 0; border-bottom: 1px solid #233247; }
+.fatalguard-status-k { flex: 0 0 160px; color: #9fb2c9; }
+.fatalguard-status-v { flex: 1 1 auto; color: #dce6f2; word-break: break-word; }
+.fatalguard-status-actions { display: flex; gap: 8px; margin-top: 12px; }
+/* Outlined on the dark panel — override wp-admin's blue .button (scoped by the
+   overlay id so it beats .wp-core-ui .button). */
+#fatalguard-overlay .fatalguard-status-actions .button {
+  height: 30px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  background: transparent;
+  color: #eaf1fa;
+  border: 1px solid rgba(255, 255, 255, 0.55);
+  border-radius: 6px;
+  padding: 0 14px;
+  font-size: 12px;
+  line-height: 1;
+  box-shadow: none;
+  text-shadow: none;
+  cursor: pointer;
+}
+#fatalguard-overlay .fatalguard-status-actions .button:hover {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: #fff;
+  color: #fff;
+}
+#fatalguard-overlay .fatalguard-status-actions .button:disabled { opacity: 0.5; cursor: default; }

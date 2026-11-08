@@ -1,0 +1,887 @@
+# Translation template for FatalGuard.
+# Copyright (C) 2026 FatalGuard
+# This file is distributed under the same license as the FatalGuard plugin.
+msgid ""
+msgstr ""
+"Project-Id-Version: FatalGuard\n"
+"Report-Msgid-Bugs-To: https://fatalguard.pages.dev/\n"
+"POT-Creation-Date: 2026-08-24 13:48+0200\n"
+"PO-Revision-Date: 2026-08-24 13:48+0200\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Domain: fatalguard\n"
+
+#: pro/mcp/settings-ui.php:35 settings/settings-page.php:1008
+#: settings/settings-page.php:1036
+msgid "AI access (MCP)"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:36 settings/settings-page.php:1009
+msgid "Pro — let an AI assistant read your errors"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:39
+msgid ""
+"Connect Claude, Cursor or any MCP client and ask it what is crashing your "
+"site. Read-only. Works only while WordPress can still load."
+msgstr ""
+
+#: pro/mcp/settings-ui.php:49
+msgid "Your API key — copy it now, it is shown only once"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:52 pro/mcp/settings-ui.php:137
+msgid "Copy"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:55 pro/mcp/settings-ui.php:59
+msgid "Regenerate key"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:56 pro/mcp/settings-ui.php:60
+msgid "Revoke key"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:61
+msgid ""
+"A key is active (shown only once at creation). Regenerating replaces it — "
+"the old key stops working immediately."
+msgstr ""
+
+#: pro/mcp/settings-ui.php:63 settings/settings-page.php:1027
+msgid "Generate API key"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:64
+msgid "Generate a key, then copy a client snippet below."
+msgstr ""
+
+#: pro/mcp/settings-ui.php:72
+msgid "Claude Code (run in your terminal)"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:77
+msgid "Cursor — mcp.json (mcpServers)"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:81
+msgid "VS Code — .vscode/mcp.json (servers)"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:85
+msgid "Claude Desktop — claude_desktop_config.json (via mcp-remote)"
+msgstr ""
+
+#: pro/mcp/settings-ui.php:212
+msgid "Not allowed."
+msgstr ""
+
+#: pro/mcp/settings-ui.php:217
+msgid "FatalGuard Pro required."
+msgstr ""
+
+#. translators can localise it.
+#: recover/recover-screens.php:68
+msgid "FatalGuard — recovery"
+msgstr ""
+
+#: recover/recover-screens.php:111
+msgid "just now"
+msgstr ""
+
+#. translators: %d: number of minutes since the fatal was captured.
+#: recover/recover-screens.php:113
+#, php-format
+msgid "%d min ago"
+msgid_plural "%d mins ago"
+msgstr[0] ""
+msgstr[1] ""
+
+#: recover/recover-screens.php:117
+msgid "Your site hit a fatal error"
+msgstr ""
+
+#. translators: 1: plugin name (bold, already escaped), 2: how long ago (e.g. "5 mins ago").
+#: recover/recover-screens.php:120
+#, php-format
+msgid ""
+"FatalGuard captured a fatal error in %1$s%2$s. Deactivating it may restore "
+"the site — check the site first if you're unsure."
+msgstr ""
+
+#: recover/recover-screens.php:128
+msgid "Folder"
+msgstr ""
+
+#: recover/recover-screens.php:128
+msgid "Plugin file"
+msgstr ""
+
+#: recover/recover-screens.php:130 recover/recover-screens.php:224
+msgid "Plugin"
+msgstr ""
+
+#. translators: %s: plugin name.
+#: recover/recover-screens.php:136
+#, php-format
+msgid "Deactivate %s"
+msgstr ""
+
+#: recover/recover-screens.php:140
+msgid "Check your site first"
+msgstr ""
+
+#: recover/recover-screens.php:141
+msgid ""
+"Just turns the plugin off so your pages load. Nothing is deleted — re-enable "
+"it anytime from Plugins once it's fixed."
+msgstr ""
+
+#: recover/recover-screens.php:142
+msgid "Secure recovery link · expires in 4 hours · signed by FatalGuard"
+msgstr ""
+
+#: recover/recover-screens.php:163
+msgid "RESOLVED"
+msgstr ""
+
+#: recover/recover-screens.php:167
+msgid "Plugin already inactive"
+msgstr ""
+
+#. translators: %s: plugin name (bold, already escaped).
+#: recover/recover-screens.php:169
+#, php-format
+msgid ""
+"%s wasn't active, so nothing changed. If your site is still down, another "
+"plugin may be the cause."
+msgstr ""
+
+#: recover/recover-screens.php:172
+msgid "Plugin turned off — site still erroring"
+msgstr ""
+
+#. translators: %s: plugin name (bold, already escaped).
+#: recover/recover-screens.php:174
+#, php-format
+msgid ""
+"%s is deactivated. Another plugin may still be involved — check your site "
+"and expect a follow-up alert."
+msgstr ""
+
+#: recover/recover-screens.php:177
+msgid "Plugin turned off — check your site"
+msgstr ""
+
+#. translators: %s: plugin name (bold, already escaped).
+#: recover/recover-screens.php:179
+#, php-format
+msgid "%s is deactivated. Open your site to confirm it's back up."
+msgstr ""
+
+#: recover/recover-screens.php:182
+msgid "Site restored"
+msgstr ""
+
+#. translators: %s: plugin name (bold, already escaped).
+#: recover/recover-screens.php:184
+#, php-format
+msgid "%s is deactivated. Your pages load again."
+msgstr ""
+
+#: recover/recover-screens.php:187
+msgid "Off"
+msgstr ""
+
+#: recover/recover-screens.php:187
+msgid "Status"
+msgstr ""
+
+#: recover/recover-screens.php:188
+msgid "already off"
+msgstr ""
+
+#: recover/recover-screens.php:192 recover/recover-screens.php:194
+msgid "Site"
+msgstr ""
+
+#: recover/recover-screens.php:192
+msgid "homepage responds (the failing page was not re-tested)"
+msgstr ""
+
+#: recover/recover-screens.php:194
+msgid "still erroring — another plugin may be involved"
+msgstr ""
+
+#: recover/recover-screens.php:199
+msgid "Visit your site"
+msgstr ""
+
+#: recover/recover-screens.php:200
+msgid "Open Plugins to update or replace it"
+msgstr ""
+
+#: recover/recover-screens.php:201
+msgid "Re-enable it once you've updated or replaced it."
+msgstr ""
+
+#: recover/recover-screens.php:222
+msgid "This recovery link has expired"
+msgstr ""
+
+#: recover/recover-screens.php:223
+msgid ""
+"Recovery links are valid for 4 hours. The error is still captured — request "
+"a fresh link below, or deactivate manually from wp-admin."
+msgstr ""
+
+#: recover/recover-screens.php:230
+msgid "Request a new recovery link"
+msgstr ""
+
+#: recover/recover-screens.php:233
+msgid "Deactivate from Plugins instead"
+msgstr ""
+
+#: recover/recover-screens.php:234
+msgid "Links are single-use and signed · FatalGuard"
+msgstr ""
+
+#: settings/dashboard-widget.php:23
+msgid "FatalGuard — error watch"
+msgstr ""
+
+#: settings/dashboard-widget.php:70
+msgid "Alert"
+msgstr ""
+
+#. translators: %s: channel name, e.g. Telegram.
+#: settings/dashboard-widget.php:76
+#, php-format
+msgid "%s alerts are failing."
+msgstr ""
+
+#: settings/dashboard-widget.php:82
+msgid "Fix it"
+msgstr ""
+
+#: settings/dashboard-widget.php:85
+msgid "Telegram alerts are on."
+msgstr ""
+
+#: settings/dashboard-widget.php:88
+msgid "Alerts are off — a fatal error would go unnoticed."
+msgstr ""
+
+#: settings/dashboard-widget.php:89
+msgid "Turn on alerts"
+msgstr ""
+
+#: settings/dashboard-widget.php:104
+msgid "Capture disabled (kill-switch active)."
+msgstr ""
+
+#: settings/dashboard-widget.php:105
+msgid "Re-arm in FatalGuard settings"
+msgstr ""
+
+#: settings/dashboard-widget.php:108
+msgid ""
+"Not capturing — another fatal-error handler is installed. FatalGuard cannot "
+"record fatals."
+msgstr ""
+
+#: settings/dashboard-widget.php:111
+msgid "Not capturing — drop-in not installed. FatalGuard cannot record fatals."
+msgstr ""
+
+#: settings/dashboard-widget.php:112
+msgid "Re-arm"
+msgstr ""
+
+#: settings/dashboard-widget.php:119
+msgid "No fatal errors captured. All clear."
+msgstr ""
+
+#: settings/dashboard-widget.php:123
+msgid "Fatal error"
+msgstr ""
+
+#: settings/dashboard-widget.php:150
+msgid "Open FatalGuard"
+msgstr ""
+
+#: settings/dashboard-widget.php:155
+msgid "Never miss one."
+msgstr ""
+
+#: settings/dashboard-widget.php:156
+msgid ""
+"Pro adds Slack, email and Discord alerts, per-plugin routing, and a weekly "
+"digest."
+msgstr ""
+
+#: settings/dashboard-widget.php:158
+msgid "Go Pro"
+msgstr ""
+
+#. translators: %s: human-readable time difference, e.g. "3 hours".
+#: settings/dashboard-widget.php:184
+#, php-format
+msgid "%s ago"
+msgstr ""
+
+#: settings/review-ask.php:50
+msgid "Has FatalGuard caught a fatal for you yet?"
+msgstr ""
+
+#: settings/review-ask.php:51
+msgid ""
+"If it saved you a headache, a quick review would mean a lot — and helps "
+"other developers find it."
+msgstr ""
+
+#: settings/review-ask.php:53
+msgid "Leave a review"
+msgstr ""
+
+#: settings/review-ask.php:54
+msgid "Maybe later"
+msgstr ""
+
+#: settings/settings-page.php:41 settings/settings-page.php:42
+#: settings/settings-page.php:81 settings/settings-page.php:528
+#: settings/settings-page.php:542
+msgid "FatalGuard"
+msgstr ""
+
+#: settings/settings-page.php:145
+#, php-format
+msgid ""
+"FatalGuard: %1$d alert delivery failed. Most recent: %2$s → %3$s (%4$s). <a "
+"href=\"%5$s\">Check the channel settings.</a>"
+msgid_plural ""
+"FatalGuard: %1$d alert deliveries failed. Most recent: %2$s → %3$s (%4$s). "
+"<a href=\"%5$s\">Check the channel settings.</a>"
+msgstr[0] ""
+msgstr[1] ""
+
+#. translators: %s: the rejected chat ID value
+#: settings/settings-page.php:286
+#, php-format
+msgid ""
+"\"%s\" is not a valid Telegram chat ID (must be a number like -100123456789) "
+"— keeping the previous value."
+msgstr ""
+
+#. translators: %s: the rejected value
+#: settings/settings-page.php:313
+#, php-format
+msgid "\"%s\" is not a valid number of days — keeping the previous value."
+msgstr ""
+
+#. translators: %s: the rejected URL
+#: settings/settings-page.php:336
+#, php-format
+msgid "\"%s\" is not a valid HTTPS webhook URL — keeping the previous value."
+msgstr ""
+
+#. translators: %s: the rejected email address
+#: settings/settings-page.php:363
+#, php-format
+msgid "“%s” is not a valid email address — keeping the previous value."
+msgstr ""
+
+#. translators: %s: comma-separated list of rejected entries
+#: settings/settings-page.php:397
+#, php-format
+msgid ""
+"Stealth allowlist: these entries are not valid email addresses and were "
+"removed — %s"
+msgstr ""
+
+#. translators: %s: the current admin's email address
+#: settings/settings-page.php:415
+#, php-format
+msgid ""
+"Your email (%s) was automatically added to the stealth allowlist — removing "
+"yourself would lock you out of FatalGuard settings."
+msgstr ""
+
+#: settings/settings-page.php:518
+msgid "You do not have permission to access this page."
+msgstr ""
+
+#: settings/settings-page.php:543
+msgid ""
+"Catches the fatal error behind the white screen — and pings you the moment "
+"one hits."
+msgstr ""
+
+#: settings/settings-page.php:546
+msgid "telegram"
+msgstr ""
+
+#: settings/settings-page.php:557
+msgid "FatalGuard status"
+msgstr ""
+
+#: settings/settings-page.php:559
+msgid "Armed"
+msgstr ""
+
+#: settings/settings-page.php:561
+msgid "Standby"
+msgstr ""
+
+#: settings/settings-page.php:561
+msgid "no destination"
+msgstr ""
+
+#: settings/settings-page.php:569
+msgid "Capturing"
+msgstr ""
+
+#. translators: kill-switch was triggered by an auto-disarm or manual DISABLE file.
+#: settings/settings-page.php:578
+msgid "Disabled — Re-arm to restore capture"
+msgstr ""
+
+#: settings/settings-page.php:580
+msgid "Not capturing — another handler is installed"
+msgstr ""
+
+#: settings/settings-page.php:582
+msgid "Not capturing — drop-in not installed"
+msgstr ""
+
+#. translators: %s: time ago
+#: settings/settings-page.php:587
+#, php-format
+msgid "last %s ago"
+msgstr ""
+
+#. translators: %d: number of captured fatals
+#: settings/settings-page.php:590
+#, php-format
+msgid "%d captured"
+msgid_plural "%d captured"
+msgstr[0] ""
+msgstr[1] ""
+
+#: settings/settings-page.php:594
+msgid "All clear"
+msgstr ""
+
+#: settings/settings-page.php:609 settings/settings-page.php:636
+#: settings/settings-page.php:1072
+msgid "Alerts"
+msgstr ""
+
+#: settings/settings-page.php:610
+msgid "General"
+msgstr ""
+
+#: settings/settings-page.php:611 settings/settings-page.php:708
+#: settings/settings-page.php:944
+msgid "Error history"
+msgstr ""
+
+#: settings/settings-page.php:612
+msgid "AI (MCP)"
+msgstr ""
+
+#: settings/settings-page.php:615
+msgid "Upgrade"
+msgstr ""
+
+#: settings/settings-page.php:637
+msgid "Free — one Telegram destination"
+msgstr ""
+
+#: settings/settings-page.php:641
+msgid "Telegram"
+msgstr ""
+
+#: settings/settings-page.php:642
+msgid "Create a bot, press Start, and the chat is detected for you."
+msgstr ""
+
+#: settings/settings-page.php:649
+msgid "Enter token and chat id manually"
+msgstr ""
+
+#: settings/settings-page.php:651
+msgid "Bot token"
+msgstr ""
+
+#: settings/settings-page.php:655
+msgid "saved — leave blank to keep"
+msgstr ""
+
+#: settings/settings-page.php:659
+msgid "Chat id"
+msgstr ""
+
+#: settings/settings-page.php:683
+msgid "Logging"
+msgstr ""
+
+#: settings/settings-page.php:690
+msgid "Show PHP errors on the front end"
+msgstr ""
+
+#: settings/settings-page.php:691
+msgid "For local development only — never leave this on for a live site."
+msgstr ""
+
+#: settings/settings-page.php:709 settings/settings-page.php:945
+msgid "Pro — searchable database history"
+msgstr ""
+
+#: settings/settings-page.php:710
+msgid ""
+"Pro keeps every fatal in a searchable database — grouped, with counts and "
+"first/last-seen — and adds a “History” tab to the log viewer. Free shows the "
+"live tail only."
+msgstr ""
+
+#: settings/settings-page.php:714
+msgid "Searchable, grouped error history with counts and first/last-seen"
+msgstr ""
+
+#: settings/settings-page.php:723
+msgid "Save changes"
+msgstr ""
+
+#: settings/settings-page.php:816
+msgid "Alert channels"
+msgstr ""
+
+#: settings/settings-page.php:817
+msgid "Pro — alongside Telegram"
+msgstr ""
+
+#: settings/settings-page.php:819
+msgid "Slack incoming webhook"
+msgstr ""
+
+#: settings/settings-page.php:819
+msgid "Create a Slack incoming webhook"
+msgstr ""
+
+#: settings/settings-page.php:820
+msgid "Discord webhook URL"
+msgstr ""
+
+#: settings/settings-page.php:820
+msgid "Create a Discord webhook"
+msgstr ""
+
+#: settings/settings-page.php:821
+msgid "Email address"
+msgstr ""
+
+#: settings/settings-page.php:822
+msgid "Custom webhook (JSON POST)"
+msgstr ""
+
+#: settings/settings-page.php:822
+msgid "Custom webhook payload & setup"
+msgstr ""
+
+#: settings/settings-page.php:827 settings/settings-page.php:1041
+msgid "Alert routing"
+msgstr ""
+
+#: settings/settings-page.php:829
+msgid "Extra Telegram targets"
+msgstr ""
+
+#: settings/settings-page.php:836
+msgid ""
+"One per line: chat_id | plugin-slug | optional bot token. Fatals from that "
+"plugin also go to this chat."
+msgstr ""
+
+#: settings/settings-page.php:856
+msgid "Send test to all channels"
+msgstr ""
+
+#: settings/settings-page.php:860
+msgid ""
+"Sends a test to every saved channel. Save first if you just changed one."
+msgstr ""
+
+#: settings/settings-page.php:890 settings/telegram-connect.php:307
+msgid "Sending…"
+msgstr ""
+
+#: settings/settings-page.php:896
+msgid "No channels configured yet."
+msgstr ""
+
+#: settings/settings-page.php:909
+msgid "Request failed."
+msgstr ""
+
+#: settings/settings-page.php:920 settings/settings-page.php:1042
+msgid "Stealth mode"
+msgstr ""
+
+#: settings/settings-page.php:922
+msgid "Show FatalGuard only to these admins"
+msgstr ""
+
+#: settings/settings-page.php:929
+msgid ""
+"Admin emails, comma- or line-separated. Everyone else won't see the plugin. "
+"Blank = show to all."
+msgstr ""
+
+#: settings/settings-page.php:933 settings/settings-page.php:1043
+msgid "Weekly digest"
+msgstr ""
+
+#: settings/settings-page.php:935
+msgid "Send a weekly summary to"
+msgstr ""
+
+#: settings/settings-page.php:947
+msgid "Keep history for (days)"
+msgstr ""
+
+#: settings/settings-page.php:953
+msgid "Old entries are pruned daily. Use 0 to keep everything."
+msgstr ""
+
+#: settings/settings-page.php:973
+msgid "How to set this up"
+msgstr ""
+
+#: settings/settings-page.php:992
+msgid "Pro"
+msgstr ""
+
+#: settings/settings-page.php:993
+msgid "Preview — available in FatalGuard Pro."
+msgstr ""
+
+#: settings/settings-page.php:994 settings/settings-page.php:1049
+msgid "Upgrade to Pro"
+msgstr ""
+
+#: settings/settings-page.php:1011
+msgid ""
+"Connect Claude, Cursor, VS Code or any MCP client and ask about your site in "
+"plain English — answered from your real error history. Read-only, secured by "
+"a revocable API key."
+msgstr ""
+
+#: settings/settings-page.php:1014
+msgid "“What’s the most recurring error this week?”"
+msgstr ""
+
+#: settings/settings-page.php:1015
+msgid "“Which deprecations are in my active theme?”"
+msgstr ""
+
+#: settings/settings-page.php:1016
+msgid "“What started failing after my last deploy?”"
+msgstr ""
+
+#: settings/settings-page.php:1024
+msgid ""
+"Ask an AI what is crashing your site — answered from your real error history"
+msgstr ""
+
+#: settings/settings-page.php:1028
+msgid "Generate a key in Pro, then paste it into your AI client."
+msgstr ""
+
+#: settings/settings-page.php:1036
+msgid ""
+"Ask Claude, Cursor or any AI what's crashing your site — reads your real "
+"error history."
+msgstr ""
+
+#: settings/settings-page.php:1037
+msgid "Slack"
+msgstr ""
+
+#: settings/settings-page.php:1037
+msgid "Post fatals to a channel via an incoming webhook."
+msgstr ""
+
+#: settings/settings-page.php:1038
+msgid "Discord"
+msgstr ""
+
+#: settings/settings-page.php:1038
+msgid "Send alerts to a Discord channel."
+msgstr ""
+
+#: settings/settings-page.php:1039
+msgid "Email"
+msgstr ""
+
+#: settings/settings-page.php:1039
+msgid "Get a mail whenever a fatal is captured."
+msgstr ""
+
+#: settings/settings-page.php:1040
+msgid "Custom webhook"
+msgstr ""
+
+#: settings/settings-page.php:1040
+msgid "JSON POST to any URL — Zapier, Make, your own bus."
+msgstr ""
+
+#: settings/settings-page.php:1041
+msgid "Send a plugin's fatals to their own Telegram target."
+msgstr ""
+
+#: settings/settings-page.php:1042
+msgid "Hide FatalGuard from every other administrator."
+msgstr ""
+
+#: settings/settings-page.php:1043
+msgid "An emailed summary of the week's errors."
+msgstr ""
+
+#: settings/settings-page.php:1047
+msgid "More channels"
+msgstr ""
+
+#: settings/settings-page.php:1080
+msgid "Docs"
+msgstr ""
+
+#: settings/telegram-connect.php:132
+msgid ""
+"That does not look like a bot token. Copy the whole line BotFather gave you."
+msgstr ""
+
+#: settings/telegram-connect.php:154 settings/telegram-connect.php:188
+msgid "Invalid token."
+msgstr ""
+
+#: settings/telegram-connect.php:191
+msgid "Invalid chat id."
+msgstr ""
+
+#: settings/telegram-connect.php:282
+msgid "Telegram connected ✓"
+msgstr ""
+
+#: settings/telegram-connect.php:283
+msgid "Fatal-error alerts go to "
+msgstr ""
+
+#: settings/telegram-connect.php:284
+msgid "Send test message"
+msgstr ""
+
+#: settings/telegram-connect.php:285
+msgid "Disconnect"
+msgstr ""
+
+#: settings/telegram-connect.php:286
+msgid "Connect Telegram alerts"
+msgstr ""
+
+#: settings/telegram-connect.php:287
+msgid "1. Create your bot in Telegram (~30s)"
+msgstr ""
+
+#: settings/telegram-connect.php:288
+msgid "Open @BotFather in Telegram."
+msgstr ""
+
+#: settings/telegram-connect.php:289
+msgid "Send /newbot."
+msgstr ""
+
+#: settings/telegram-connect.php:290
+msgid "Give it a name (e.g. \"Acme Site Alerts\")."
+msgstr ""
+
+#: settings/telegram-connect.php:291
+msgid "Give it a username ending in \"bot\"."
+msgstr ""
+
+#: settings/telegram-connect.php:292
+msgid "Copy the API token BotFather sends back."
+msgstr ""
+
+#: settings/telegram-connect.php:293
+msgid "Open @BotFather"
+msgstr ""
+
+#: settings/telegram-connect.php:294
+msgid "Copy /newbot"
+msgstr ""
+
+#: settings/telegram-connect.php:295
+msgid "2. Paste the bot token"
+msgstr ""
+
+#: settings/telegram-connect.php:296
+msgid "3. Open your bot and press Start"
+msgstr ""
+
+#: settings/telegram-connect.php:297
+msgid "Open @"
+msgstr ""
+
+#: settings/telegram-connect.php:298
+msgid "Copy link"
+msgstr ""
+
+#: settings/telegram-connect.php:299
+msgid "Waiting for you to press Start…"
+msgstr ""
+
+#: settings/telegram-connect.php:300
+msgid "No chat detected yet. Open the bot, press Start, then Retry."
+msgstr ""
+
+#: settings/telegram-connect.php:301
+msgid "Retry"
+msgstr ""
+
+#: settings/telegram-connect.php:302
+msgid "Which chat should alerts go to?"
+msgstr ""
+
+#: settings/telegram-connect.php:303
+msgid "Paste the bot token first."
+msgstr ""
+
+#: settings/telegram-connect.php:304
+msgid "Could not verify the token."
+msgstr ""
+
+#: settings/telegram-connect.php:305
+msgid "Save failed."
+msgstr ""
+
+#: settings/telegram-connect.php:306
+msgid "Network error."
+msgstr ""
+
+#: settings/telegram-connect.php:308
+msgid "Disconnect Telegram? Fatal alerts will stop until you reconnect."
+msgstr ""
+
+#: settings/telegram-connect.php:309
+msgid "Re-check"
+msgstr ""
+
+#: settings/telegram-connect.php:310
+msgid "Connect"
+msgstr ""

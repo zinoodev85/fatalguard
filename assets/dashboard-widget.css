@@ -1,0 +1,28 @@
+/* FatalGuard dashboard widget (moved from inline <style> in dashboard-widget.php for wp.org enqueue compliance). */
+.fg-dash{font-size:13px;line-height:1.5}
+.fg-dash a{text-decoration:none;font-weight:600}
+.fg-dash__status{display:flex;align-items:center;gap:7px;margin:0 0 12px;font-weight:600}
+.fg-dash__dot{width:8px;height:8px;border-radius:50%;flex:none}
+.fg-dash__status.on{color:#1c7a4d}
+.fg-dash__status.on .fg-dash__dot{background:#2fa36b}
+.fg-dash__status.off{color:#8a6d1a}
+.fg-dash__status.off .fg-dash__dot{background:#f5a623}
+.fg-dash__status.warn{color:#b42318;flex-wrap:wrap}
+.fg-dash__status.warn .fg-dash__dot{background:#e5484d}
+.fg-dash__failmsg{font-weight:400;color:#6d7d8c}
+.fg-dash__clear{background:#e7f5ee;color:#1c7a4d;border-radius:9px;padding:14px 15px;font-weight:600}
+.fg-dash__err{border:1px solid #f0d9d9;background:#fdf6f6;border-radius:9px;padding:12px 14px}
+.fg-dash__err-top{display:flex;align-items:center;gap:8px;margin-bottom:5px}
+.fg-dash__tag{background:#e5484d;color:#fff;font-weight:700;font-size:11px;padding:2px 8px;border-radius:6px}
+.fg-dash__when{color:#6d7d8c;font-size:12px;margin-left:auto}
+.fg-dash__msg{margin:4px 0;color:#15181c}
+.fg-dash__loc{margin:6px 0 0;font-size:12px;color:#6d7d8c}
+.fg-dash__loc code{background:#eef1f4;padding:1px 6px;border-radius:5px}
+.fg-dash__origin{color:#8a6d1a}
+.fg-dash__more{margin:12px 0 0}
+.fg-dash__pro{display:flex;align-items:center;gap:12px;margin-top:14px;padding:12px 14px;border-radius:10px;
+	background:linear-gradient(135deg,#fff8ea,#fdeecb);border:1px solid #f3dca6}
+.fg-dash__pro-txt{flex:1;color:#5b4a1e;font-size:12.5px}
+.fg-dash__pro-btn{flex:none;background:#f5a623;color:#3a2a05;padding:7px 14px;border-radius:8px;
+	border:1px solid #ec9a12}
+.fg-dash__pro-btn:hover{background:#ec9a12}

@@ -1,0 +1,9 @@
+/* FatalGuard review-ask notice (moved from inline <style> in review-ask.php for wp.org enqueue compliance).
+   Literal colors (no CSS vars) so it looks right on any admin page. */
+.fg-review{border-left-color:#dba617}
+.fg-review>p{margin:0;padding:0}
+.fg-review .fg-review__in{display:flex;align-items:flex-start;flex-wrap:wrap;gap:4px 12px;padding:10px 38px 10px 4px}
+.fg-review .fg-review__stars{flex:none;color:#dba617;font-size:15px;letter-spacing:3px;line-height:1.55}
+.fg-review .fg-review__txt{flex:1 1 320px;min-width:240px;font-size:13.5px;line-height:1.55}
+.fg-review .fg-review__act{display:flex;align-items:center;gap:14px;flex:1 1 100%;margin:10px 0 0}
+.fg-review .fg-review__later{font-size:13px;font-weight:600;text-decoration:none}

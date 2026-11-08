@@ -1,0 +1,40 @@
+/* FatalGuard connect wizard — used on the settings page AND inside the log popup
+   (dark). Colors use inherit/opacity so it reads in both contexts. */
+.fatalguard-connect { color: inherit; font-size: 13px; line-height: 1.5; max-width: 640px; }
+.fatalguard-connect .fgc-h { margin: 0 0 .6em; font-size: 15px; }
+.fatalguard-connect .fgc-label { display: block; font-weight: 600; margin: 1em 0 .4em; }
+.fatalguard-connect .fgc-row { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin: .4em 0; }
+.fatalguard-connect .fgc-input { flex: 1 1 260px; min-width: 200px; }
+.fatalguard-connect .fgc-details { margin: .4em 0 1em; }
+.fatalguard-connect .fgc-details summary { cursor: pointer; font-weight: 600; }
+.fatalguard-connect .fgc-steps { margin: .6em 0; padding-left: 1.4em; }
+.fatalguard-connect .fgc-steps li { margin: .25em 0; }
+.fatalguard-connect .fgc-muted { opacity: .75; margin: .5em 0; }
+.fatalguard-connect .fgc-wait::before { content: '⏳ '; }
+.fatalguard-connect .fgc-err { color: #d63638; margin: .6em 0; }
+.fatalguard-connect .fgc-flash { opacity: .8; font-style: italic; }
+
+/* Log-popup "Alerts" tab — channel roster (Telegram + Pro channels), each with a
+   status dot: green active · red failing · grey not set up. Reads in dark + light. */
+.fatalguard-connect .fgc-channels { margin: 0 0 1.1em; padding: 0 0 1em; border-bottom: 1px solid rgba(128,128,128,.25); }
+.fatalguard-connect .fgc-chan-list { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.fatalguard-connect .fgc-chan { display: flex; align-items: center; gap: 10px; }
+.fatalguard-connect .fgc-chan__dot { flex: none; width: 8px; height: 8px; border-radius: 50%; background: #8c8f94; }
+.fatalguard-connect .fgc-chan__dot--active { background: #46b450; }
+.fatalguard-connect .fgc-chan__dot--failing { background: #d63638; }
+.fatalguard-connect .fgc-chan__dot--off { background: #8c8f94; opacity: .5; }
+.fatalguard-connect .fgc-chan__name { font-weight: 600; }
+.fatalguard-connect .fgc-chan__status { margin-left: auto; opacity: .7; font-size: 12px; }
+.fatalguard-connect .fgc-chan__status--active { color: #46b450; opacity: .9; }
+.fatalguard-connect .fgc-chan__status--failing { color: #d63638; opacity: 1; }
+/* Pro channels on the free build: amber "Pro" badge, row slightly dimmed. */
+.fatalguard-connect .fgc-chan--locked { opacity: .78; }
+.fatalguard-connect .fgc-chan__dot--pro { background: #dba617; }
+.fatalguard-connect .fgc-chan__status--pro {
+  color: #dba617; opacity: 1; font-weight: 700; font-size: 10px;
+  letter-spacing: .6px; text-transform: uppercase;
+  border: 1px solid rgba(219,166,23,.5); border-radius: 3px; padding: 1px 6px;
+}
+/* Stack the picker/action buttons a little tighter inside the popup (the popup
+   container carries BOTH classes on the same node → compound selector). */
+.fatalguard-ext.fatalguard-connect .button { margin: 2px 0; }

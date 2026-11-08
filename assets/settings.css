@@ -1,0 +1,298 @@
+/* FatalGuard settings — an "incident console" surface. The plugin's identity is a
+   monitor watching for the fatal behind the white screen, so the settings screen
+   reads like that monitor: charcoal ground, amber signal, monospace data. Same
+   language as the recovery screens + the History/MCP promos, so the whole product
+   is one thing. Everything scoped under .fatalguard-settings so nothing leaks into
+   core admin. The Telegram connect wizard is color:inherit (it already lives in the
+   dark log popup), so it themes for free. */
+.fatalguard-settings {
+  --fg-amber: #f5a623;
+  --fg-amber-2: #ffb93a;
+  --fg-amber-ink: #3a2a05;
+  --fg-ink: #14171b;
+  --fg-panel: #1b1f25;
+  --fg-panel-2: #22272e;
+  --fg-line: #2c333c;
+  --fg-line-2: #3a434e;
+  --fg-text: #e7ecf1;
+  --fg-muted: #93a0ae;
+  --fg-faint: #5f6b78;
+  --fg-green: #2fa36b;
+  --fg-red: #e5484d;
+  --fg-mono: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  --fg-r: 12px;
+  max-width: 960px;
+  margin: 8px 20px 60px 2px;
+  padding: 4px 0 0;
+  background: transparent;
+  color: var(--fg-text);
+  font-size: 14px;
+  line-height: 1.5;
+}
+.fatalguard-settings * { box-sizing: border-box; }
+.fatalguard-settings a { color: var(--fg-amber-2); }
+
+/* Paint the whole admin content area charcoal so the console fills the page —
+   no dark island floating in white. This file loads only on the FatalGuard
+   screen (hook toplevel_page_fatalguard), so these reach nothing else. */
+body.toplevel_page_fatalguard #wpwrap,
+body.toplevel_page_fatalguard #wpcontent,
+body.toplevel_page_fatalguard #wpbody,
+body.toplevel_page_fatalguard #wpbody-content { background: #14171b; }
+body.toplevel_page_fatalguard #wpfooter { color: #5f6b78; border-top-color: #2c333c; }
+body.toplevel_page_fatalguard #wpfooter a { color: #93a0ae; }
+
+/* wp-admin prints an <h1> + update notices we re-home into the dark surface */
+.fatalguard-settings > .fg-hide { display: none; }
+.fatalguard-settings .notice {
+  background: var(--fg-panel); border: 1px solid var(--fg-line);
+  border-left-width: 3px; color: var(--fg-text);
+  border-radius: 8px; box-shadow: none;
+}
+.fatalguard-settings .notice p { color: var(--fg-text); }
+.fatalguard-settings .notice-dismiss::before { color: var(--fg-muted); }
+.fatalguard-settings .notice-dismiss:hover::before,
+.fatalguard-settings .notice-dismiss:focus::before { color: var(--fg-amber); }
+
+/* review ask — a calm amber-edged callout, not a cramped default notice */
+/* The review-ask notice is fully self-styled by an inline <style> in
+   settings/review-ask.php so it looks right on EVERY admin page (it renders via
+   admin_notices, but this stylesheet only loads on our own screen). Only the
+   settings-page margin lives here. */
+.fatalguard-settings .fg-review { margin: 8px 0 20px; }
+
+/* ---- header: identity + live status readout (the signature) ---- */
+.fg-head {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  padding: 4px 2px 20px;
+  border-bottom: 1px solid var(--fg-line);
+  margin-bottom: 20px;
+}
+.fg-mark {
+  width: 44px; height: 44px; flex: none;
+  display: grid; place-items: center;
+}
+.fg-head__id h1 { margin: 0; font-size: 20px; font-weight: 700; letter-spacing: -.02em; line-height: 1.1; color: var(--fg-text); }
+.fg-head__id p { margin: 4px 0 0; color: var(--fg-muted); font-size: 13px; max-width: 46ch; }
+
+/* the readout: three signals in a bordered instrument panel, like a monitor widget */
+.fg-readout {
+  margin-left: auto; flex: none;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  font: 600 11.5px/1 var(--fg-mono);
+  padding: 11px 14px;
+  border: 1px solid var(--fg-line);
+  border-radius: 9px;
+  background: rgba(0, 0, 0, .18);
+}
+.fg-sig {
+  display: inline-flex; align-items: center; gap: 8px;
+  text-transform: uppercase; letter-spacing: .05em;
+  color: var(--fg-muted);
+}
+.fg-sig .dot {
+  width: 7px; height: 7px; border-radius: 50%; background: currentColor;
+  box-shadow: 0 0 0 3px color-mix(in srgb, currentColor 22%, transparent);
+}
+.fg-sig em { font-style: normal; text-transform: none; letter-spacing: 0; color: var(--fg-faint); }
+.fg-sig--on, .fg-sig--live, .fg-sig--ok { color: var(--fg-green); }
+.fg-sig--off, .fg-sig--warn { color: var(--fg-amber); }
+.fg-sig--live .dot { animation: fg-pulse 2.4s ease-in-out infinite; }
+@keyframes fg-pulse { 0%, 100% { opacity: 1; } 50% { opacity: .35; } }
+
+/* ---- sections + cards ---- */
+.fg-sec { margin: 0 0 24px; }
+/* breathing room above every section after the first — incl. the one that
+   follows a Pro lock CTA (fieldset), where labels felt cramped */
+.fg-panel .fg-sec:not(:first-child),
+.fg-lock__fields .fg-sec { margin-top: 22px; }
+.fg-sec__head {
+  display: flex; align-items: baseline; gap: 10px; margin: 0 2px 11px;
+}
+.fg-sec__label {
+  font: 700 11px var(--fg-mono);
+  letter-spacing: .11em; text-transform: uppercase;
+  color: var(--fg-muted);
+}
+.fg-sec__hint { color: var(--fg-faint); font: 500 12px var(--fg-mono); margin-left: auto; }
+
+.fg-card {
+  background: var(--fg-panel);
+  border: 1px solid var(--fg-line);
+  border-radius: var(--fg-r);
+  padding: 18px 20px;
+}
+.fg-card + .fg-card { margin-top: 12px; }
+/* the Telegram card is the primary action → a slightly raised panel, no accent wash */
+.fg-card--hero { border-color: var(--fg-line-2); background: #1e232a; }
+.fg-card__top { display: flex; align-items: center; gap: 12px; margin-bottom: 4px; }
+.fg-ico {
+  width: 34px; height: 34px; border-radius: 9px; flex: none;
+  display: grid; place-items: center; font-size: 17px;
+  background: rgba(43, 125, 224, .16); color: #6aa8f5;
+}
+.fg-card__top h2 { margin: 0; font-size: 15px; font-weight: 600; color: var(--fg-text); }
+.fg-card__top .fg-sub { margin: 1px 0 0; color: var(--fg-muted); font-size: 12.5px; }
+.fg-card > .fg-sub { margin: 0; color: var(--fg-muted); }
+
+/* logging / plain checkbox rows */
+.fg-check { display: flex; gap: 10px; align-items: flex-start; }
+.fg-check input { margin-top: 2px; }
+.fg-check .fg-check__t { display: block; font-weight: 600; color: var(--fg-text); }
+.fg-check .fg-check__d { display: block; color: var(--fg-muted); font-size: 12.5px; margin-top: 2px; }
+
+/* advanced disclosure */
+.fg-adv { margin-top: 14px; border-top: 1px solid var(--fg-line); padding-top: 12px; }
+.fg-adv > summary {
+  cursor: pointer; color: var(--fg-muted); font-size: 12.5px; font-weight: 600; list-style: none;
+}
+.fg-adv > summary::-webkit-details-marker { display: none; }
+.fg-adv > summary::before { content: "▸ "; color: var(--fg-faint); }
+.fg-adv[open] > summary::before { content: "▾ "; }
+.fg-field { margin: 12px 0 0; }
+.fg-field label { display: block; font-weight: 600; margin-bottom: 5px; font-size: 13px; color: var(--fg-text); }
+.fg-field__help { margin: 5px 0 0; font-size: 12px; }
+.fg-field__help a { color: var(--fg-muted); text-decoration: none; }
+.fg-field__help a:hover { color: var(--fg-text); text-decoration: underline; }
+
+/* ---- form controls: dark, monospace where it's data ---- */
+.fatalguard-settings input[type="text"],
+.fatalguard-settings input[type="password"],
+.fatalguard-settings input[type="email"],
+.fatalguard-settings input[type="url"],
+.fatalguard-settings input[type="number"],
+.fatalguard-settings textarea,
+.fatalguard-settings select {
+  background: var(--fg-panel-2);
+  border: 1px solid var(--fg-line-2);
+  border-radius: 8px;
+  color: var(--fg-text);
+  padding: 7px 11px;
+  box-shadow: none;
+  font-family: var(--fg-mono);
+  font-size: 13px;
+}
+.fatalguard-settings .fg-field input[type="text"],
+.fatalguard-settings .fg-field input[type="password"],
+.fatalguard-settings .fg-field input[type="url"],
+.fatalguard-settings .fg-field input[type="email"] { width: 100%; max-width: 420px; }
+.fatalguard-settings .fg-field input[type="number"] { width: 100%; max-width: 120px; }
+.fatalguard-settings input::placeholder,
+.fatalguard-settings textarea::placeholder { color: var(--fg-faint); }
+.fatalguard-settings input:focus,
+.fatalguard-settings textarea:focus,
+.fatalguard-settings select:focus {
+  border-color: var(--fg-amber);
+  outline: 2px solid rgba(245, 166, 35, .35);
+  outline-offset: 0;
+}
+
+/* buttons — Save is the amber primary action; the rest are quiet dark chips */
+.fatalguard-settings .button,
+.fatalguard-settings .button-secondary {
+  background: #2a313a; border: 1px solid #4c5764;
+  color: #eef2f6; border-radius: 8px; box-shadow: none;
+}
+.fatalguard-settings .button:hover { border-color: #6a7684; color: #fff; background: #333b45; }
+.fatalguard-settings .button-primary,
+.fatalguard-settings p.submit .button-primary {
+  background: var(--fg-amber); border-color: #c9810a; color: #231800;
+  text-shadow: none; box-shadow: none; font-weight: 700;
+}
+.fatalguard-settings .button-primary:hover { background: var(--fg-amber-2); border-color: #c9810a; color: #231800; }
+.fatalguard-settings .button:disabled,
+.fatalguard-settings .button-primary:disabled { opacity: .5; }
+.fatalguard-settings p.submit { border-top: 1px solid var(--fg-line); padding-top: 18px; margin-top: 6px; }
+
+/* ---- Pro teaser grid (Upgrade tab) ---- */
+.fg-pro__head { display: flex; align-items: center; gap: 12px; margin: 0 2px 12px; }
+.fg-pro__head .fg-sec__label { display: flex; align-items: center; gap: 8px; }
+.fg-badge {
+  font: 800 10px var(--fg-mono); letter-spacing: .08em;
+  padding: 3px 7px; border-radius: 6px;
+  background: linear-gradient(150deg, #ffd27a, var(--fg-amber)); color: var(--fg-amber-ink);
+}
+.fg-upgrade {
+  margin-left: auto;
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 15px; border-radius: 9px;
+  background: var(--fg-amber); color: #231800 !important;
+  font-weight: 700; text-decoration: none; border: 1px solid #c9810a;
+}
+.fg-upgrade:hover { background: var(--fg-amber-2); }
+
+.fg-pro-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(210px, 1fr));
+  gap: 12px;
+}
+.fg-pro-grid .fg-lock {
+  position: relative;
+  background: var(--fg-panel);
+  border: 1px solid var(--fg-line);
+  border-radius: var(--fg-r);
+  padding: 14px 15px;
+}
+.fg-pro-grid .fg-lock:hover { border-color: var(--fg-line-2); }
+.fg-lock__top { display: flex; align-items: center; gap: 10px; }
+.fg-pro-grid .fg-ico { width: 30px; height: 30px; font-size: 15px; background: var(--fg-panel-2); color: var(--fg-muted); }
+.fg-lock h3 { margin: 0; font-size: 13.5px; font-weight: 600; color: var(--fg-text); }
+.fg-pro-grid .fg-lock p { margin: 8px 0 0; color: var(--fg-muted); font-size: 12.5px; line-height: 1.45; }
+.fg-lock__pad { position: absolute; top: 12px; right: 13px; font-size: 12px; opacity: .6; }
+
+@media (max-width: 782px) {
+  .fatalguard-settings { margin-right: 10px; padding: 18px 16px 26px; }
+  .fg-head { flex-wrap: wrap; }
+  .fg-readout { margin-left: 0; align-items: flex-start; flex-direction: row; flex-wrap: wrap; gap: 6px 14px; }
+  .fg-sig em { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .fg-sig--live .dot { animation: none; }
+}
+
+/* Tab controller (moved from inline <style> in settings-page.php for wp.org enqueue compliance). */
+.fg-tabs{display:flex;gap:2px;margin:4px 0 22px;border-bottom:1px solid #2c333c;flex-wrap:wrap}
+.fg-tab{background:none;border:0;border-bottom:2px solid transparent;padding:9px 15px;cursor:pointer;font:600 12.5px ui-monospace,"SF Mono",Menlo,Consolas,monospace;letter-spacing:.04em;text-transform:uppercase;color:#93a0ae;margin-bottom:-1px}
+.fg-tab:hover{color:#e7ecf1}
+.fg-tab.is-active{color:#f5a623;border-bottom-color:#f5a623}
+.fg-tab:focus-visible{outline:2px solid rgba(245,166,35,.5);outline-offset:2px;border-radius:4px}
+.fg-lock{margin:2px 0 8px}
+.fg-lock__cta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;background:#22272e;border:1px solid #2c333c;border-radius:11px;padding:11px 14px;margin-bottom:12px}
+.fg-lock__badge{font:700 11px ui-monospace,"SF Mono",Menlo,monospace;letter-spacing:.06em;text-transform:uppercase;color:#93a0ae;background:#1b1f25;border:1px solid #3a434e;border-radius:6px;padding:2px 8px}
+.fg-lock__txt{color:#c7b489;font-size:13px}
+.fg-lock__btn{margin-left:auto;background:#f5a623;color:#231800!important;border:1px solid #c9810a;border-radius:8px;padding:7px 14px;font-weight:700;font-size:13px;text-decoration:none}
+.fg-lock__btn:hover{background:#ffb93a;color:#231800!important}
+.fg-lock__fields{border:0;padding:0;margin:0;min-inline-size:auto;opacity:.5}
+.fg-ai-examples{list-style:none;margin:14px 0;padding:0;display:flex;flex-direction:column;gap:8px}
+.fg-ai-examples li{font:500 13px ui-monospace,"SF Mono",Menlo,Consolas,monospace;color:#cdd6df;background:#22272e;border:1px solid #2c333c;border-radius:9px;padding:9px 13px}
+.fg-ai-examples li::before{content:"› ";color:#f5a623;font-weight:700}
+.fg-promo{display:block;width:100%;max-width:760px;height:auto;border-radius:12px;border:1px solid #2c333c;box-shadow:0 12px 30px rgba(0,0,0,.4);margin:14px 0 4px}
+.fg-panel[hidden]{display:none}
+body.fg-hide-save p.submit{display:none}
+
+/* Send-test-to-all-channels button (moved from inline <style> in settings-page.php). */
+.fg-test-all{margin-top:14px}
+.fg-test-note{display:block;margin:6px 0 0}
+.fg-test-results{margin:10px 0 0;padding:0;list-style:none;font:13px var(--fg-mono,ui-monospace,Menlo,Consolas,monospace)}
+.fg-test-results li{padding:3px 0;color:var(--fg-text,#e7ecf1)}
+.fg-test-results li .fg-test-ch{display:inline-block;min-width:88px;font-weight:600}
+.fg-test-ok{color:var(--fg-green,#2fa36b)}
+.fg-test-bad{color:var(--fg-red,#e5484d)}
+
+/* AI access (MCP) panel — key bar + copyable client snippets (mcp/settings-ui.php). */
+.fg-code-label{margin:14px 0 4px;font-weight:600;font-size:13px;color:var(--fg-text,#1d2327)}
+.fg-code-wrap{position:relative}
+.fg-code{background:#1d2327;color:#e6e6e6;border-radius:6px;padding:14px 16px;margin:0;overflow:auto;max-height:340px;font:12px/1.6 ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;white-space:pre;-webkit-user-select:all;user-select:all}
+.fg-code code{background:none;padding:0;color:inherit;font:inherit;white-space:pre}
+.fg-copy{position:absolute;top:8px;right:8px}
+.fg-mcp-keybar{margin:6px 0 16px}
+.fg-mcp-gen.button-hero{background:#f5a623;border-color:#ec9a12;color:#3a2a05;box-shadow:none;text-shadow:none;font-size:15px;font-weight:700;height:auto;line-height:1.2;padding:12px 26px;border-radius:9px}
+.fg-mcp-gen.button-hero:hover,.fg-mcp-gen.button-hero:focus{background:#ec9a12;border-color:#d98c0f;color:#3a2a05}
+.fg-mcp-revoke{margin-left:6px}
+.fg-mcp-actions{margin-top:8px}
+.fg-mcp-keybox{background:#fff8ea;border:1px solid #f3dca6;border-radius:10px;padding:14px 16px;margin:0 0 12px}
+.fg-mcp-keylabel{display:block;font-weight:700;font-size:13px;color:#5b4a1e;margin-bottom:8px}
+.fg-mcp-keyrow{display:flex;gap:8px}
+.fg-mcp-key{flex:1;font:13px ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;padding:10px 12px;border:1px solid #e0c98a;border-radius:7px;background:#fff;color:#1d2327}
