@@ -103,6 +103,18 @@ All six are read-only. The AI cannot change anything on your site.
 The server works while WordPress can still load. For a site that is fully down, use the
 recovery link from the fatal alert. Revoke the key at any time on the same page.
 
+## Try it without a site (Docker)
+
+The repository builds a sandbox: a throwaway WordPress (SQLite, no web server) with
+FatalGuard active and some demo errors, speaking MCP over stdio.
+
+```sh
+docker build -t fatalguard-mcp . && docker run -i --rm fatalguard-mcp
+```
+
+It is a demo to see the tools and their answers. Real use is the plugin on your own site,
+connected as shown above.
+
 ## License
 
 GPLv2 or later. See [LICENSE.txt](LICENSE.txt).
