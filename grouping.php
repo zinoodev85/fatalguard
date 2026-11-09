@@ -40,9 +40,56 @@ function fatalguard_signature( string $message ): string {
 	return ( null === $s || '' === $s ) ? trim( $message ) : $s;
 }
 
+/** Max continuation lines (stack trace) kept on one entry. */
+const FATALGUARD_DL_MAX_TRACE_LINES = 20;
+
+/**
+ * True for an untimed line that continues the entry above it: PHP writes an
+ * uncaught exception as one timestamped line followed by "Stack trace:",
+ * "#0 …" frames, "  thrown in …" and "Next …" lines with no timestamp.
+ */
+function fatalguard_is_continuation( string $line ): bool {
+	return (bool) preg_match( '/^(?:Stack trace:|#\d+ |Next |\s+\S)/', $line );
+}
+
+/**
+ * Join stack-trace lines onto the timestamped entry they belong to, so a
+ * trace groups with its error instead of each frame becoming its own "error".
+ * Continuation lines with no entry above them (the tail started mid-trace) are
+ * dropped; untimed lines that are not trace lines stay entries of their own.
+ *
+ * @param string[] $lines oldest→newest.
+ * @return string[] entries, oldest→newest (multi-line entries joined by "\n").
+ */
+function fatalguard_join_entries( array $lines ): array {
+	$entries = array();
+	$cur     = null; // index of the last timestamped entry
+	$extra   = 0;
+	foreach ( $lines as $line ) {
+		$line = rtrim( (string) $line, "\r\n" );
+		if ( '' === trim( $line ) ) {
+			continue;
+		}
+		$timed = (bool) preg_match( '/^\[[^\]]+\]/', $line );
+		if ( ! $timed && fatalguard_is_continuation( $line ) ) {
+			if ( null !== $cur && $extra < FATALGUARD_DL_MAX_TRACE_LINES ) {
+				$entries[ $cur ] .= "\n" . $line;
+				$extra++;
+			}
+			continue;
+		}
+		$entries[] = $line;
+		$cur       = $timed ? count( $entries ) - 1 : null;
+		$extra     = 0;
+	}
+	return $entries;
+}
+
 /**
  * Group raw log lines. Returns entries newest-first:
  * { signature, sample, count, first_seen, last_seen }  (seen = epoch|null).
+ * A stack trace stays with its error: the signature comes from the first line,
+ * the sample carries the trace.
  *
  * @param string[] $lines oldest→newest, as fatalguard_tail() returns.
  * @return array<int,array>
@@ -50,13 +97,10 @@ function fatalguard_signature( string $message ): string {
 function fatalguard_group_lines( array $lines ): array {
 	$groups = array();
 	$order  = 0;
-	foreach ( $lines as $line ) {
-		$line = (string) $line;
-		if ( '' === trim( $line ) ) {
-			continue;
-		}
-		list( $ts, $msg ) = fatalguard_split_line( $line );
-		$sig = fatalguard_signature( $msg );
+	foreach ( fatalguard_join_entries( $lines ) as $line ) {
+		$head              = strtok( $line, "\n" );
+		list( $ts, $msg ) = fatalguard_split_line( false === $head ? $line : $head );
+		$sig               = fatalguard_signature( $msg );
 		if ( '' === $sig ) {
 			continue;
 		}

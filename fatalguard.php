@@ -3,7 +3,7 @@
  * Plugin Name:       FatalGuard
  * Plugin URI:        https://fatalguard.com/
  * Description:       View your debug log, catch fatal errors behind the white screen, and get instant Telegram alerts — no wp-config editing. Slack, email & Discord alerts in Pro.
- * Version:           1.3.1
+ * Version:           1.3.2
  * Requires at least: 6.0
  * Requires PHP:      7.4
  * Author:            Zino (@zinodev)
@@ -38,7 +38,7 @@ if ( function_exists( 'fatalguard_bridge_settings' ) ) {
 	return;
 }
 
-define( 'FATALGUARD_VERSION', '1.3.1' );
+define( 'FATALGUARD_VERSION', '1.3.2' );
 define( 'FATALGUARD_FILE', __FILE__ );
 define( 'FATALGUARD_DIR', plugin_dir_path( __FILE__ ) );
 

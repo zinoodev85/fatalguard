@@ -3,7 +3,7 @@
   "name": "io.github.zinoodev85/fatalguard",
   "title": "FatalGuard",
   "description": "Read-only MCP server inside WordPress: PHP error logs, debug.log and fatal errors.",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "websiteUrl": "https://wordpress.org/plugins/fatalguard/",
   "repository": {
     "url": "https://github.com/zinoodev85/fatalguard",

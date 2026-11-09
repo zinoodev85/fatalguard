@@ -4,7 +4,7 @@ Tags: error log, debug log, fatal error, telegram, mcp
 Requires at least: 6.0
 Tested up to: 7.1
 Requires PHP: 7.4
-Stable tag: 1.3.1
+Stable tag: 1.3.2
 License: GPLv2 or later
 License URI: https://www.gnu.org/licenses/gpl-2.0.html
 
@@ -126,6 +126,9 @@ FatalGuard sends no analytics, telemetry or usage data anywhere, and does not ph
 8. "Which deprecations are in my theme?" — the AI reads your live errors through FatalGuard's read-only MCP server.
 
 == Changelog ==
+
+= 1.3.2 =
+* Fix: a stack trace now stays with its error in the grouped log view and in the AI (MCP) error list, instead of each trace line showing as its own error.
 
 = 1.3.1 =
 * Listing: name now shows AI (MCP) access. No code changes.

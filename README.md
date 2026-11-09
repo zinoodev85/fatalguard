@@ -5,7 +5,7 @@ catches the fatal error behind the "critical error" white screen, sends Telegram
 a one-tap recovery link, and runs its own **read-only MCP server**, so Claude, Cursor or
 VS Code can read your site's errors.
 
-This repository is a read-only mirror of the free plugin, version 1.3.1. Development
+This repository is a read-only mirror of the free plugin, version 1.3.2. Development
 happens elsewhere; issues and questions go to the
 [support forum](https://wordpress.org/support/plugin/fatalguard/).
 
