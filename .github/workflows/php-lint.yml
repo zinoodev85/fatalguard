@@ -1,0 +1,22 @@
+# Mirror CI: every PHP file must parse on the oldest and newest supported PHP.
+# Source: products/fatalguard/tools/glama/github-php-lint.yml (copied by tools/github-mirror.mjs).
+name: PHP lint
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.4']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - name: Lint
+        run: find . -name '*.php' -not -path './.git/*' -print0 | xargs -0 -n1 php -l

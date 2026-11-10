@@ -1,0 +1,7 @@
+# Keeps the mirror's GitHub Actions current. The plugin itself has no package dependencies.
+version: 2
+updates:
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: weekly
